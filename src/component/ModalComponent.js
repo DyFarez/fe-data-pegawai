@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import { Modal, Fade, Box, Typography, Backdrop, Divider, TextField, Autocomplete, MenuItem, Button, Stack, Skeleton, Select, FormControl,InputLabel } from '@mui/material'
+import { Modal, Fade, Box, Typography, Backdrop, Divider, TextField, Autocomplete, MenuItem, Button, Stack, Skeleton } from '@mui/material'
 import { createData, getListKebupaten, getListKecamatan, getListKelurahan, getListProvinsi, updateData } from '../services/pegawaiServices'
 import { useDispatch, useSelector } from 'react-redux'
-import { resetDetail, setListDropDown, setListKabupaten, setListProvinsi } from '../redux/actions/actionDaerah'
-import { useFormik } from 'formik'
+import { resetDetail, setListDropDown } from '../redux/actions/actionDaerah'
 import { closeModal } from '../redux/actions/actionModal'
 import { validateForm } from '../utils/validation'
 
@@ -123,7 +122,7 @@ export const ModalComponent = (props) => {
         boxShadow: 24,
         p: 4,
       };
-console.log('isLoading',isLoading)
+
   return (
     <Modal
         aria-labelledby="modal-component"
@@ -164,9 +163,7 @@ console.log('isLoading',isLoading)
                     sx={{ width: '100%' }}
                     value={data?.provinsi}
                     onChange={(event, newInputValue) => handleChangeData('provinsi', newInputValue)}
-                    // defaultValue={listDaerah?.detail?.provinsi}
                     inputValue={data?.provinsi}
-                    // onInputChange={(event, newInputValue) => handleChangeData('provinsi', newInputValue)}
                     renderInput={(params) => <TextField {...params} 
                                                 label="Provinsi" 
                                                 error={errorData.provinsi ? true : false}
@@ -197,27 +194,6 @@ console.log('isLoading',isLoading)
                 )}
                 </TextField>
                 ) : (<Skeleton variant="text" sx={{ fontSize: '4.5rem', mb: -4 }} />)}
-                {/* <FormControl sx={{ width: '100%', mt: 2}}>
-                    <InputLabel id="label-kabupaten">Kabupaten</InputLabel>
-                    <Select
-                        labelId="label-kabupaten"
-                        id="kabupaten"
-                        name='kabupaten'
-                        displayEmpty
-                        value={data.kabupaten}
-                        label="Kabupaten"
-                        onChange={(event) => handleChangeData(event.target.name, event.target.value)}
-                        renderValue={(params) => data.kabupaten}
-                        error={errorData.kabupaten ? true : false}
-                        helperText={errorData.kabupaten}
-                    >
-                    {listDaerah.kabupaten.map((option) => (
-                        <MenuItem key={option.id} value={option.name}>
-                          {option.name}
-                        </MenuItem>
-                        ))}
-                    </Select>
-                </FormControl> */}
                 { !isLoading ? (
                 <TextField
                     name="kecamatan"
@@ -241,27 +217,6 @@ console.log('isLoading',isLoading)
                 )}
                 </TextField>
                 ) : (<Skeleton variant="text" sx={{ fontSize: '4.5rem', mb: -4 }} />)}
-                {/* <FormControl sx={{ width: '100%', mt: 2}}>
-                    <InputLabel id="label-kecamatan">Kecamatan</InputLabel>
-                    <Select
-                        labelId="label-kecamatan"
-                        id="kecamatan"
-                        name='kecamatan'
-                        displayEmpty
-                        value={data.kecamatan}
-                        label="Kecamatan"
-                        onChange={(event) => handleChangeData(event.target.name, event.target.value)}
-                        renderValue={(params) => data.kecamatan}
-                        error={errorData.kecamatan ? true : false}
-                        helperText={errorData.kecamatan}
-                    >
-                    {listDaerah.kecamatan.map((option) => (
-                        <MenuItem key={option.id} value={option.name}>
-                          {option.name}
-                        </MenuItem>
-                        ))}
-                    </Select>
-                </FormControl> */}
                 { !isLoading ? (
                 <TextField
                     name="kelurahan"
@@ -286,27 +241,6 @@ console.log('isLoading',isLoading)
                 )}
                 </TextField>
                 ) : (<Skeleton variant="text" sx={{ fontSize: '4.5rem', mb: -4 }} />)}
-                {/* <FormControl sx={{ width: '100%', mt: 2, mb: 1}}>
-                    <InputLabel id="label-kelurahan">Kelurahan</InputLabel>
-                    <Select
-                        labelId="label-kelurahan"
-                        id="kelurahan"
-                        name='kelurahan'
-                        displayEmpty
-                        value={data.kelurahan}
-                        label="kelurahan"
-                        onChange={(event) => handleChangeData(event.target.name, event.target.value)}
-                        renderValue={(params) => data.kelurahan}
-                        error={errorData.kelurahan ? true : false}
-                        helperText={errorData.kelurahan}
-                    >
-                    {listDaerah.kelurahan.map((option) => (
-                        <MenuItem key={option.id} value={option.name}>
-                          {option.name}
-                        </MenuItem>
-                        ))}
-                    </Select>
-                </FormControl> */}
                 { !isLoading ? (
                 <TextField label="Alamat" id="jalan" value={data.jalan} onChange={(event) => handleChangeData(event.target.id, event.target.value)}
                      error={errorData.jalan ? true : false} helperText={errorData.jalan} fullWidth  />

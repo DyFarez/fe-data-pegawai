@@ -19,9 +19,7 @@ import { openModal } from '../redux/actions/actionModal';
 
 export const Home = () => {
     const [isLoading, setLoading] = useState(false)
-    // const [openModal, setOpenModal] = useState(false)
     const listPegawai =  useSelector ( state => state.pegawaiReducer)
-    const daerah =  useSelector ( state => state.daerahReducer)
     const modalInfo =  useSelector ( state => state.modalReducer)
     const dispatch = useDispatch();
 
